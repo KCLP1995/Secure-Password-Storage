@@ -9,8 +9,17 @@ while True:
     
     os.system("cls")
     try:
-        Welcome_word = pyfiglet.figlet_format("Welcome to Password Managing", font="doom", width=200)
-        print("\n" +f"{BLUE} {Welcome_word} {RESET}")
+        # ----------------------------
+        # Display Welcome Message
+        # ----------------------------
+        try:
+            Welcome_word = pyfiglet.figlet_format("Welcome to Password Managing", font="doom", width=200)
+        except Exception as e:
+            # Fallback if pyfiglet fails
+            Welcome_word = "Welcome to Password Managing"
+            print(f"{RED}Error displaying fancy text: {e}{RESET}")
+        
+        print("\n" + f"{BLUE} {Welcome_word} {RESET}")
         print(f"{BLUE}={RESET}"*200)
         print("""
                             Menu: 
@@ -22,18 +31,35 @@ while True:
                                 0. Exit 
                 """)
         print(f"{BLUE}={RESET}"*200)
-        opt = input(f"\n\tChoose an option (1-3): {RESET}")
 
-        if opt == '' :
+        # ----------------------------
+        # User Input
+        # ----------------------------
+        opt = input(f"\n\tChoose an option (1-3): {RESET}").strip()
+        if not opt:
             raise ValueError(f"{RED}Input cannot be empty!{RESET}")
         
-        opt = int(opt)
-
-        if opt == 1 :
-            Register()
+        try:
+            opt = int(opt)
+        except ValueError:
+            raise ValueError(f"{RED}Input must be a number!{RESET}")
+        
+        # ----------------------------
+        # Menu Options
+        # ----------------------------
+        if opt == 1:
+            try:
+                Register()
+            except Exception as e:
+                print(f"{RED}Error during registration: {e}{RESET}")
+                time.sleep(1)
         elif opt == 2:
-            login()
-            input("press any key to continue")                   
+            try:
+                login()
+                input("Press any key to continue")
+            except Exception as e:
+                print(f"{RED}Error during login: {e}{RESET}")
+                time.sleep(1)                  
         elif opt == 0:
             os.system("cls")
             print(f"{BLUE}={RESET}"*200+"\n")
@@ -45,14 +71,23 @@ while True:
         else:
             os.system("cls")
             print(f"{BLUE}={RESET}"*200+"\n")
-            print(f"{RED}The system was closed Invalid time{RESET}\n")
+            print(f"{RED}Invalid option. Please enter 0, 1, or 2.{RESET}\n")
             print(f"{BLUE}={RESET}"*200+"\n")
             input(" "*170 + f"{RED}Exit{RESET}")
 
+    # ----------------------------
+    # Catch top-level input errors
+    # ----------------------------
     except ValueError as e:
-        print(f"\n\t{RED}Invalid input! Please enter a valid number. Error: {e}{RESET}")
+        print(f"\n\t{RED}Invalid input! {e}{RESET}")
         time.sleep(1)
         os.system('cls')
-
-
-
+    except KeyboardInterrupt:
+        print(f"\n{RED}Program interrupted by user. Exiting...{RESET}")
+        time.sleep(1)
+        os.system('cls')
+        break
+    except Exception as e:
+        print(f"\n{RED}Unexpected error occurred: {e}{RESET}")
+        time.sleep(1)
+        os.system('cls')
