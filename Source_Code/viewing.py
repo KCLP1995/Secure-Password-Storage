@@ -5,6 +5,7 @@ from add_password import *
 from Crypto.Cipher import AES
 from base64 import b64decode
 import bcrypt
+from add_password import *
 
 # -----------------------------
 # NORMAL VIEW (Only masked encrypted)
@@ -86,22 +87,6 @@ def two_step_verification(user_data, max_attempts=3):
     except Exception as e:
         print(f"{RED}Verification error: {e}{RESET}")
         return False
-
-
-# -----------------------------
-# AES DECRYPT FUNCTION
-# -----------------------------
-def decrypt_aes(enc_text, key_bytes):
-    try:
-        data = b64decode(enc_text)
-        nonce = data[:16]
-        tag = data[16:32]
-        ciphertext = data[32:]
-        cipher = AES.new(key_bytes, AES.MODE_EAX, nonce=nonce)
-        return cipher.decrypt_and_verify(ciphertext, tag).decode()
-    except Exception as e:
-        raise Exception("AES decryption failed") from e
-
 
 # -----------------------------
 # SPECIAL VIEW (Dynamic password decryption)

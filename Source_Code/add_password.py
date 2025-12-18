@@ -3,6 +3,7 @@ import getpass
 from Crypto.Cipher import AES
 from Crypto.Random import get_random_bytes
 from base64 import b64encode
+from base64 import b64decode
 from register import *
 
 PASSWORD_FILE = "Storage_File/password_storage.txt"
@@ -20,6 +21,20 @@ def encrypt_aes(plain_text, key_bytes):
         print(f"{RED}Encryption error occurred.{RESET}")
         return ""
 
+# -----------------------------
+# AES DECRYPT FUNCTION
+# -----------------------------
+def decrypt_aes(enc_text, key_bytes):
+    try:
+        data = b64decode(enc_text)
+        nonce = data[:16]
+        tag = data[16:32]
+        ciphertext = data[32:]
+        cipher = AES.new(key_bytes, AES.MODE_EAX, nonce=nonce)
+        return cipher.decrypt_and_verify(ciphertext, tag).decode()
+    except Exception as e:
+        raise Exception("AES decryption failed") from e
+    
 # -----------------------------
 # ADD PASSWORD FUNCTION
 # -----------------------------
