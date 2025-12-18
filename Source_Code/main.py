@@ -13,7 +13,7 @@ while True:
         # Display Welcome Message
         # ----------------------------
         try:
-            Welcome_word = pyfiglet.figlet_format("Welcome to Password Managing", font="doom", width=200)
+            Welcome_word = pyfiglet.figlet_format("Welcome to Secure Password Storage", font="doom", width=200)
         except Exception as e:
             # Fallback if pyfiglet fails
             Welcome_word = "Welcome to Password Managing"
