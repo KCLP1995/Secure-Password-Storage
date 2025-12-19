@@ -233,7 +233,7 @@ def update_password(user_data):
         if option == "y":
             print(f"{GREEN}Password, description, and AES key updated successfully !!!{RESET}")
             try:
-                os.system("cls")
+                input("Press Any Key to Continue")
             except Exception:
                 pass
         else:
