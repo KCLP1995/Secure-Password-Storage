@@ -239,7 +239,7 @@ def update_password(user_data):
         else:
             print(f"{GREEN}Password and description updated successfully !!!{RESET}")
             try:
-                os.system("cls")
+                input("Press Any Key to Continue")
             except Exception:
                 pass
 
