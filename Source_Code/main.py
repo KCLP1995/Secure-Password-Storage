@@ -20,7 +20,7 @@ while True:
             print(f"{RED}Error displaying fancy text: {e}{RESET}")
         
         print("\n" + f"{BLUE} {Welcome_word} {RESET}")
-        print(f"{BLUE}={RESET}"*200)
+        print(f"{BLUE}={RESET}"*170)
         print("""
                             Menu: 
                     
@@ -30,7 +30,7 @@ while True:
 
                                 0. Exit 
                 """)
-        print(f"{BLUE}={RESET}"*200)
+        print(f"{BLUE}={RESET}"*170)
 
         # ----------------------------
         # User Input
@@ -62,17 +62,17 @@ while True:
                 time.sleep(1)                  
         elif opt == 0:
             os.system("cls")
-            print(f"{BLUE}={RESET}"*200+"\n")
+            print(f"{BLUE}={RESET}"*170+"\n")
             print("Exit The Program ...\n")
-            print(f"{BLUE}={RESET}"*200+"\n")
+            print(f"{BLUE}={RESET}"*170+"\n")
             time.sleep(1)
             os.system("cls")
             break
         else:
             os.system("cls")
-            print(f"{BLUE}={RESET}"*200+"\n")
+            print(f"{BLUE}={RESET}"*170+"\n")
             print(f"{RED}Invalid option. Please enter 0, 1, or 2.{RESET}\n")
-            print(f"{BLUE}={RESET}"*200+"\n")
+            print(f"{BLUE}={RESET}"*170+"\n")
             input(" "*170 + f"{RED}Exit{RESET}")
 
     # ----------------------------

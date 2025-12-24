@@ -141,9 +141,9 @@ def login_menu(user_data):
                     os.system("cls")
                 except Exception:
                     pass
-                print(f"{BLUE}={RESET}" * 200 + "\n")
+                print(f"{BLUE}={RESET}" * 170 + "\n")
                 print("Logging out ...\n")
-                print(f"{BLUE}={RESET}" * 200 + "\n")
+                print(f"{BLUE}={RESET}" * 170 + "\n")
                 break
             else:
                 print(f"{RED}Invalid choice. Try again.{RESET}")
